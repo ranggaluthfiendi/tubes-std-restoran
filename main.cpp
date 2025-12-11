@@ -1,8 +1,8 @@
 #include "restoran.h"
 
 int main() {
-    Node* execChef = createNode("Executive Chef / Chief Cook");
-    Node* sousChef = createNode("Sous Chef / Asst Chief Cook");
+    Node* execChef = createNode("ExecutiveChef");
+    Node* sousChef = createNode("SousChef");
     addChild(execChef, sousChef);
 
     int pilihan;
