@@ -17,8 +17,8 @@ Program mendukung pembuatan node posisi, penambahan child, sibling, pencarian po
 
 📂 File Utama
 
-- mll.h – deklarasi struct dan fungsi
-- mll.cpp – implementasi fungsi
+- restoran.h – deklarasi struct dan fungsi
+- restoran.cpp – implementasi fungsi
 - main.cpp – menu utama dan interaksi pengguna
 
 👥 Kontributor
