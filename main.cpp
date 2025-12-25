@@ -1,88 +1,88 @@
 #include "restoran.h"
 
 int main() {
-    Node* execChef = createNode("ExecutiveChef");
-    Node* sousChef = createNode("SousChef");
-    addChild(execChef, sousChef);
+    ElemenPosisi* executiveChef = buatPosisi("Executive Chef");
+    ElemenPosisi* sousChef = buatPosisi("Sous Chef");
+    tambahBawahan(executiveChef, sousChef);
 
-    int pilihan;
-    string parentName, newPosisi, searchName;
-    Node* parentNode;
-    Node* found;
+    int menu;
+    string namaTarget, namaBaru;
+    ElemenPosisi* posisiTarget;
 
     while (true) {
-        cout << "\n=== MENU MLL ORGANISASI KITCHEN ===\n";
+        cout << "\n=== STRUKTUR ORGANISASI KITCHEN ===\n";
         cout << "1. Tampilkan Struktur\n";
-        cout << "2. Tambah Child\n";
-        cout << "3. Tambah Sibling\n";
-        cout << "4. Cari Posisi\n";
-        cout << "5. Hitung Anak dari Posisi\n";
-        cout << "6. Keluar\n";
+        cout << "2. Tambah Bawahan\n";
+        cout << "3. Tambah Rekan Sejajar\n";
+        cout << "4. Cari Posisi (Detail)\n";
+        cout << "5. Hitung Jumlah Bawahan\n";
+        cout << "6. Tampilkan Posisi Tanpa Bawahan\n";
+        cout << "7. Hitung Total Posisi\n";
+        cout << "8. Keluar\n";
         cout << "Pilih: ";
-        cin >> pilihan;
+        cin >> menu;
         cin.ignore();
 
-        if (pilihan == 1) {
-            display(execChef);
+        if (menu == 1) {
+            tampilkanStruktur(executiveChef);
         }
+        else if (menu == 2) {
+            cout << "Masukkan nama atasan: ";
+            getline(cin, namaTarget);
+            posisiTarget = cariPosisi(executiveChef, namaTarget);
 
-        else if (pilihan == 2) {
-            cout << "Masukkan nama parent: ";
-            getline(cin, parentName);
-            parentNode = search(execChef, parentName);
-
-            if (!parentNode) {
-                cout << "Parent tidak ditemukan.\n";
-            } else {
-                cout << "Masukkan nama posisi baru: ";
-                getline(cin, newPosisi);
-                addChild(parentNode, createNode(newPosisi));
-                cout << "Child berhasil ditambahkan.\n";
-            }
-        }
-
-        else if (pilihan == 3) {
-            cout << "Masukkan nama node untuk tambah sibling: ";
-            getline(cin, parentName);
-            parentNode = search(execChef, parentName);
-
-            if (!parentNode) {
-                cout << "Node tidak ditemukan.\n";
-            } else {
-                cout << "Masukkan nama posisi sibling baru: ";
-                getline(cin, newPosisi);
-                addSibling(parentNode, createNode(newPosisi));
-                cout << "Sibling berhasil ditambahkan.\n";
-            }
-        }
-
-        else if (pilihan == 4) {
-            cout << "Masukkan nama posisi yang dicari: ";
-            getline(cin, searchName);
-            found = search(execChef, searchName);
-
-            if (!found)
-                cout << "Tidak ditemukan.\n";
-            else
-                cout << "Ditemukan: " << found->posisi << endl;
-        }
-
-        else if (pilihan == 5) {
-            cout << "Masukkan nama posisi: ";
-            getline(cin, parentName);
-            parentNode = search(execChef, parentName);
-
-            if (!parentNode)
+            if (posisiTarget == nullptr) {
                 cout << "Posisi tidak ditemukan.\n";
-            else
-                cout << "Jumlah anak: " << countChildren(parentNode) << endl;
+            } else {
+                cout << "Masukkan nama bawahan baru: ";
+                getline(cin, namaBaru);
+                tambahBawahan(posisiTarget, buatPosisi(namaBaru));
+            }
         }
+        else if (menu == 3) {
+            cout << "Masukkan nama posisi: ";
+            getline(cin, namaTarget);
+            posisiTarget = cariPosisi(executiveChef, namaTarget);
 
-        else if (pilihan == 6) {
-            cout << "Program selesai.\n";
+            if (posisiTarget == nullptr) {
+                cout << "Posisi tidak ditemukan.\n";
+            } else {
+                cout << "Masukkan nama rekan baru: ";
+                getline(cin, namaBaru);
+                tambahRekan(posisiTarget, buatPosisi(namaBaru));
+            }
+        }
+        else if (menu == 4) {
+            cout << "Masukkan nama posisi: ";
+            getline(cin, namaTarget);
+            posisiTarget = cariPosisi(executiveChef, namaTarget);
+
+            if (posisiTarget == nullptr) {
+                cout << "Posisi tidak ditemukan.\n";
+            } else {
+                tampilkanDetailPosisi(posisiTarget);
+            }
+        }
+        else if (menu == 5) {
+            cout << "Masukkan nama atasan: ";
+            getline(cin, namaTarget);
+            posisiTarget = cariPosisi(executiveChef, namaTarget);
+
+            if (posisiTarget == nullptr) {
+                cout << "Posisi tidak ditemukan.\n";
+            } else {
+                cout << "Jumlah bawahan: " << hitungBawahan(posisiTarget) << endl;
+            }
+        }
+        else if (menu == 6) {
+            tampilkanPosisiTanpaBawahan(executiveChef);
+        }
+        else if (menu == 7) {
+            cout << "Total posisi: " << hitungTotalPosisi(executiveChef) << endl;
+        }
+        else if (menu == 8) {
             break;
         }
-
         else {
             cout << "Pilihan tidak valid.\n";
         }

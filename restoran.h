@@ -5,25 +5,31 @@
 #include <string>
 using namespace std;
 
-struct Node {
-    string posisi;
-    Node* parent;
-    Node* child;
-    Node* next;
-
-    Node(string p) {
-        posisi = p;
-        parent = nullptr;
-        child = nullptr;
-        next = nullptr;
-    }
+struct DataPosisi {
+    string namaPosisi;
 };
 
-Node* createNode(string posisi);
-void addChild(Node* parent, Node* child);
-void addSibling(Node* node, Node* sibling);
-void display(Node* root, int depth = 0);
-Node* search(Node* root, string posisi);
-int countChildren(Node* parent);
+struct ElemenPosisi {
+    DataPosisi data;
+    ElemenPosisi* atasan;
+    ElemenPosisi* bawahanPertama;
+    ElemenPosisi* bawahanBerikutnya;
+};
 
-#endif // RESTORAN_H_INCLUDED
+ElemenPosisi* buatPosisi(string namaPosisi);
+
+void tambahBawahan(ElemenPosisi* atasan, ElemenPosisi* bawahan);
+void tambahRekan(ElemenPosisi* posisi, ElemenPosisi* rekan);
+
+void tampilkanStruktur(ElemenPosisi* pimpinan, int tingkat = 0);
+
+ElemenPosisi* cariPosisi(ElemenPosisi* pimpinan, string namaPosisi);
+
+int hitungBawahan(ElemenPosisi* atasan);
+bool adalahPimpinan(ElemenPosisi* posisi);
+int hitungTotalPosisi(ElemenPosisi* pimpinan);
+void tampilkanPosisiTanpaBawahan(ElemenPosisi* pimpinan);
+
+void tampilkanDetailPosisi(ElemenPosisi* posisi);
+
+#endif
