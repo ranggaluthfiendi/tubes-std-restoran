@@ -2,7 +2,7 @@
 
 int main() {
     ElemenPosisi* executiveChef = buatPosisi("Executive Chef");
-    ElemenPosisi* sousChef = buatPosisi("Sous Chef");
+    ElemenPosisi* sousChef = buatPosisi("Executive Sous Chef");
     tambahBawahan(executiveChef, sousChef);
 
     int menu;
@@ -12,12 +12,12 @@ int main() {
     while (true) {
         cout << "\n=== STRUKTUR ORGANISASI KITCHEN ===\n";
         cout << "1. Tampilkan Struktur\n";
-        cout << "2. Tambah Bawahan\n";
-        cout << "3. Tambah Rekan Sejajar\n";
-        cout << "4. Cari Posisi (Detail)\n";
-        cout << "5. Hitung Jumlah Bawahan\n";
-        cout << "6. Tampilkan Posisi Tanpa Bawahan\n";
-        cout << "7. Hitung Total Posisi\n";
+        cout << "2. Tambah Bawahan(Child)\n";
+        cout << "3. Tambah Rekan Sejajar(Sibling)\n";
+        cout << "4. Cari Posisi(Detail)\n";
+        cout << "5. Hitung Jumlah Bawahan(Count Child)\n";
+        cout << "6. Tampilkan Posisi Tanpa Bawahan(Leaf)\n";
+        cout << "7. Hitung Total Posisi(Total Node)\n";
         cout << "8. Keluar\n";
         cout << "Pilih: ";
         cin >> menu;
